@@ -8,4 +8,4 @@ The instructions are in code, you need to start the project locally to get start
 1. Each page in the webapp contains instructions.
 1. After completing send the solution:
   1. If you forked the repo, please send the link to it.
-  1. If you cloned it, please send a `zip` file to `hello@ohmunity.com` (please do not include `node_modules` folder).
+  1. If you cloned it, please send a `zip` file via email (please do not include `node_modules` folder).
