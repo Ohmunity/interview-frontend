@@ -6,6 +6,15 @@ const Exercise01 = () => {
   const [users, setUsers] = React.useState([])
 
   /* THE FIX STARTS HERE */
+  
+  /*
+  NOTE
+  -------
+  You can get the first 10 users by hitting https://jsonplaceholder.typicode.com/users.
+  For this exercise, assume that that option is NOT available and that you can only
+  use the https://jsonplaceholder.typicode.com/users?id=n URL (if we need to render
+  5 users, then we need to hit the URL 5 times).
+  */
 
   React.useEffect(() => {
     for(var i = 1; i < TOTAL_USERS; i++) {
