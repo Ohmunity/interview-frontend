@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios'
 
 const TOTAL_USERS = 6
 
 const Exercise01 = () => {
-  const [users, setUsers] = React.useState([])
+  const [users, setUsers] = useState([])
 
   /* THE FIX STARTS HERE */
   
@@ -16,19 +17,26 @@ const Exercise01 = () => {
   5 users, then we need to hit the URL 5 times).
   */
 
-  React.useEffect(() => {
+  const searchUsers = async () => {
+    const arrayUser = []
     for(var i = 1; i < TOTAL_USERS; i++) {
+      
+      ////>> SOLUTION WITH FETCH <<////
       // We fetch the user
-      fetch('https://jsonplaceholder.typicode.com/users?id=' + i)
+      /*const res = await fetch('https://jsonplaceholder.typicode.com/users?id=' + i)
         .then(r => r.json()) // converts response to obj
-        .then(user => user[0]) // maps [{..}] to {..} since the API provides an array
-        .then(user => {
-          setUsers([
-            ...users,
-            user
-          ])
-        })
+        .then(user => user[0]) // maps [{..}] to {..} since the API provides an array*/
+        
+      ////>> SOLUTION WITH AXIOS <<////
+      const res = await axios('https://jsonplaceholder.typicode.com/users?id=' + i)
+
+      arrayUser.push(res.data[0])
     }
+    setUsers(arrayUser)
+  }
+
+  useEffect(() => {
+    searchUsers()
   }, [])
 
   /* THE FIX ENDS HERE */

@@ -16,7 +16,7 @@ const Welcome = () => {
 
 const App = () => {
   return <div className="container">
-    <h1 class="py-4">FrontEnd Interview Exercises</h1>
+    <h1 className="py-4">FrontEnd Interview Exercises</h1>
 
     <ul className="nav nav-tabs">
       <li className="nav-item">
