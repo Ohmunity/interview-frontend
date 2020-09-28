@@ -18,7 +18,7 @@ const Exercise01 = () => {
   */
 
   const searchUsers = async () => {
-    const arrayUser = []
+    const arrayUsers = []
     for(var i = 1; i < TOTAL_USERS; i++) {
       
       ////>> SOLUTION WITH FETCH <<////
@@ -30,9 +30,9 @@ const Exercise01 = () => {
       ////>> SOLUTION WITH AXIOS <<////
       const res = await axios('https://jsonplaceholder.typicode.com/users?id=' + i)
 
-      arrayUser.push(res.data[0])
+      arrayUsers.push(res.data[0])
     }
-    setUsers(arrayUser)
+    setUsers(arrayUsers)
   }
 
   useEffect(() => {

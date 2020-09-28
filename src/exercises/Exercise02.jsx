@@ -1,33 +1,85 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 /* THE FIX STARTS HERE */
 
 // state data for 3 counters
-const data = [
-  { id: 1, value: 0 },
-  { id: 2, value: 0 },
-  { id: 3, value: 0 },
-];
+
 
 // Counter Component
-const Counter = ({ value }) => {
+const Counter = ({name, value, onChange}) => {
+
+  const handlerOnChange = e =>{
+    console.log(Number(e.target.value))
+    onChange({
+      operation: parseInt(e.target.value),
+      index: parseInt(name)
+    })
+  }
+
   return (
     <div className="d-flex my-2">
       <strong>{value}</strong>
       <div className="ml-2">
-        <button className="btn btn-danger mr-1">-</button>
-        <button className="btn btn-success">+</button>
+        <input onChange={handlerOnChange}/>
       </div>
     </div>
   );
 };
 
+/*const Counter = ({name, value, onChange}) => {
+
+  const handlerOnChange = e =>{
+    onChange({
+      operation: parseInt(e.target.name),
+      index: parseInt(name)
+    })
+  }
+
+  return (
+    <div className="d-flex my-2">
+      <strong>{value}</strong>
+      <div className="ml-2">
+        <button className="btn btn-danger mr-1" name='-1' onClick={handlerOnChange}>-</button>
+        <button className="btn btn-success" name='+1' onClick={handlerOnChange}>+</button>
+      </div>
+    </div>
+  );
+};*/
+
+const Total = ({value}) => {
+  return(
+    <strong>Total = {value}</strong>
+  )
+}
+
 const GroupOfCounters = () => {
+  const [data, setData] = useState([
+    { id: 1, value: 0 },
+    { id: 2, value: 0 },
+    { id: 3, value: 0 },
+    { id: 4, value: 0 },
+  ])
+
+  const [total, setTotal] = useState(0)
+
+  const handlerOnChange = ({operation, index}) => {
+
+    var array = data
+    array[index] = {
+      ...array[index],
+      value: array[index].value + operation
+    }
+
+    setData(array)
+    setTotal(total + operation)
+  }
+
   return (
     <div>
       {data.map((counter) => (
-        <Counter key={counter.id} value={counter.value} />
+        <Counter key={counter.id} name={`${counter.id - 1}`} value={counter.value} onChange={handlerOnChange}/>
       ))}
+      <Total value={total}/>
     </div>
   );
 };
